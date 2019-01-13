@@ -17,6 +17,9 @@
      margin: 2px;
      color: white;
    }
+   .matched {
+      background-color: lightgreen;
+   }
    </style>
 </head>
 <body>
@@ -41,6 +44,8 @@
 
 
 
+   // Exercise 4
+   // Add your code here
    // Nothing to do below this line. All your work should be above
    </script>
    <h1>Exercise 1 Test</h1>
@@ -49,6 +54,8 @@
    <div id="ex2" class="chart"></div>
    <h1>Exercise 3 Test</h1>
    <div id="ex3"></div>
+   <h1>Exercise 4 Test</h1>
+   <div id="ex4"></div>
 
    <!-- Below this line are tests. DO NOT CHANGE ANYTHING BELOW THIS LINE. -->
    <script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA=" crossorigin="anonymous"></script>
@@ -90,8 +97,8 @@
    }
 
    // Ex2
-   var anArray = [];
-   for (var i = 0; i < 10; i += 1) {
+   const anArray = [];
+   for (let i = 0; i < 10; i += 1) {
       anArray[i] = 200 * Math.random();
       $("<div></div>").css("width", anArray[i] + "px").appendTo($("#ex2"));
    }
@@ -99,17 +106,17 @@
       insertError("There is no function named fix2", $("#ex2"));
    } else {
       function adjust() {
-         var divs = $("div", $("#ex2"));
-         for (var i = 0; i < 10; i += 1) {
+         const divs = $("div", $("#ex2"));
+         for (let i = 0; i < 10; i += 1) {
             $(divs[i]).css("width", anArray[i] + "px");
          }
       }
-      var timer = setInterval(function() {
+      const timer = setInterval(function() {
          if (fix2(anArray)) {
             adjust();
          } else {
             clearInterval(timer);
-            for (var i = 1; i < anArray.length; i += 1) {
+            for (const i = 1; i < anArray.length; i += 1) {
                if (anArray[i] < anArray[i - 1]) {
                   insertError("fix2 didn't work!", $("#ex2"));
                   return;
@@ -121,25 +128,45 @@
    }
 
    // Ex3
-   var items = [
+   const items = [
       { name: "Boots", quantity: 3, price: 25 },
       { name: "Pants", quantity: 2, price: 35 },
       { name: "Jackets", quantity: 1, price: 40 }
    ];
-   var table = $("<table><thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead><tbody></tbody></table>").appendTo($("#ex3"));
+   const table = $("<table><thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead><tbody></tbody></table>").appendTo($("#ex3"));
    items.forEach(function(item) {
       $("<tr><td>" + item.name + "</td><td><input data-key='quantity' value='" + item.quantity + "'></input></td><td><input data-key='price' value='" + item.price + "'></input></td></tr>")
       .data("item", item).appendTo($("tbody", $(table)));
    });
-   var totalLine = $("<tr><td>Total</td><td></td><td id='total'>" + (window.hasOwnProperty("computeTotal") ? computeTotal(items) : NaN)  + "</td></tr>").appendTo($("tbody", $(table)));
+   const totalLine = $("<tr><td>Total</td><td></td><td id='total'>" + (window.hasOwnProperty("computeTotal") ? computeTotal(items) : NaN)  + "</td></tr>").appendTo($("tbody", $(table)));
 
-   $("input").on("change", table, function(ev) {
-      var key = $(this).data("key");
-      var item = $(this).closest("tr").data("item");
-      var value = $(this).val();
+   $("#ex3 input").on("change", table, function(ev) {
+      const key = $(this).data("key");
+      const item = $(this).closest("tr").data("item");
+      const value = $(this).val();
       item[key] = value;
       $('#total').text(computeTotal(items));
    });
+
+   // Ex4
+   if (!window.hasOwnProperty("surroundMatches") || typeof surroundMatches !== "function") {
+      insertError("There is no function named surroundMatches", $("#ex4"));
+   } else {
+      const startString = "A test string right here!";
+      const regexString = "\\w*s\\w*";
+      $('<textarea id="ex4string" rows="10" cols="40"></textarea>' +
+         '<label for="ex4regex">Regular Expression: <input id="ex4regex" name="ex4regex" type="text" /></label>' +
+         '<div id="ex4output"></div>').appendTo($("#ex4"));
+      $("#ex4string").val(startString);
+      $("#ex4regex").val(regexString);
+      function updateEx4Output() {
+         const inputString = $("#ex4string").val();
+         const regex = new RegExp($("#ex4regex").val(), "g");
+         $("#ex4output").html(surroundMatches(inputString, regex));
+      }
+      $("#ex4 input, #ex4 textarea").on("change keyup paste", updateEx4Output);
+      updateEx4Output();
+   }
    </script>
 </body>
 </html>
