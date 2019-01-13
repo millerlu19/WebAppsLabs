@@ -79,7 +79,14 @@
       } catch (e) {
          insertError("Did not handle properly the case of empty string or non-letter string", $("#ex1"));
       }
-
+      $('<textarea id="text" rows="10" cols="40" placeholder="Type here to see word count"></textarea>').
+         appendTo($("#ex1"));
+      $('<span id="count">0 words</>').appendTo($("#ex1"));
+      $("#text").on("change keyup paste", function() {
+         const s = $("#text").val();
+         const count = countWords(s);
+         $("#count").html(count + " words");
+      });
    }
 
    // Ex2
