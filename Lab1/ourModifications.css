@@ -71,3 +71,37 @@ input[type="button"]:hover {
 	background-color: green;
 	border-radius: 10px;
 }
+
+table {
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	
+	background-color: gray;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+td, th {
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: 1px solid black;
+}
+
+td:hover {
+	background-color: blue;
+}
+
+th {
+	background-color: lightgray;
+}
+
+.urgent {
+	background-color: darkred;
+	font-weight: bold;
+}
+
+tr[class="completed"] {
+	font-style: italic;
+	color: lightgray;
+}
