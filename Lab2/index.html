@@ -38,10 +38,17 @@
 
    // Exercise 2
    // Add your code here
-
-
-
-
+   function fix2(numsArray) {
+   	for (var i = 0; i < numsArray.length; i++) {
+   		if (numsArray(i) > numsArray(i+1)) {
+			var temp = numsArray(i)
+			numsArray(i) = numsArray(i+1)
+			numsArray(i+1) = temp
+			return true
+   		}
+   	}
+   	return false
+   }
 
    // Exercise 3
    // Add your code here
