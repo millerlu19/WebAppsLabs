@@ -26,9 +26,15 @@
    <script>
    // Exercise 1
    // Add your code here:
-
-
-
+   function countWords(s) {
+   	var words = 0
+   	for (var i = 0; i < s.length; i++) {
+   		if (s.charAt(i) == " ") {
+   			words++
+   		}
+   	}
+   	return words
+   }
 
    // Exercise 2
    // Add your code here
