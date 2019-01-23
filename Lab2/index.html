@@ -52,10 +52,16 @@
 
    // Exercise 3
    // Add your code here
-
-
-
-
+   function computeTotal(arr) {
+   	var priceTotal = 0
+   	if (arr == 0) {
+   		return 0
+   	}
+   	for (var i = 0; i < arr.length; i++) {
+   		priceTotal = priceTotal + (arr[i].quantity * arr[i].price)
+   	}
+   	return priceTotal
+   }
 
    // Exercise 4
    // Add your code here
