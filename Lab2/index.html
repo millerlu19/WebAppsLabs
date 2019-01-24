@@ -67,7 +67,9 @@
    // Add your code here
    function surroundMatches(s, rE) {
    	var myString = s.search(rE)
-   	
+   	if (myString == '<span class= "matched">' || myString == '</span>') {
+   		return myString
+   	}
    }
 
 
