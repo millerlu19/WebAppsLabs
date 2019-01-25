@@ -1,0 +1,11 @@
+#msg {
+   height: 1.2em;
+   padding: 0.2em;
+   font-size: 20pt;
+   font-weight: bold;
+   text-align: center;
+}
+
+#msg.error {
+   background-color: red;
+}
