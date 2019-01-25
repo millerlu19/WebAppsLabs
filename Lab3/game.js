@@ -14,5 +14,7 @@ export default class Game {
 		this.points = 0;
 	}
 
-	
+	hit() {
+		this.points += 1;
+	}
 }
