@@ -5,8 +5,14 @@ export default class Game {
 	}
 
 	isOver() {
-		if (points >= maxPoints) {
+		if (this.points >= this.maxPoints) {
 			return true;
 		}
 	}
+
+	reset() {
+		this.points = 0;
+	}
+
+	
 }
