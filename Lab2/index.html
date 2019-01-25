@@ -66,10 +66,12 @@
    // Exercise 4
    // Add your code here
    function surroundMatches(s, rE) {
-   	var myString = s.search(rE)
-   	if (myString == '<span class= "matched">' || myString == '</span>') {
-   		return myString
+   	var myString = ""
+   	let myArray = s.match(rE)
+   	for (let i in myArray) {
+   		myString += "<span class=matched>" + i + "</span>"
    	}
+   	return myString
    }
 
 
