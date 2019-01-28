@@ -1,13 +1,14 @@
 export default class Game {
-	constructor(maxPoints, points = 0) {
+	constructor(maxPoints) {
 		this.maxPoints = maxPoints;
-		this.points = points;
+		this.points = 0;
 	}
 
 	isOver() {
 		if (this.points >= this.maxPoints) {
 			return true;
 		}
+		return false;
 	}
 
 	reset() {
