@@ -8,7 +8,6 @@ export default class Game {
 		if (this.points >= this.maxPoints) {
 			return true;
 		}
-		return false;
 	}
 
 	reset() {
