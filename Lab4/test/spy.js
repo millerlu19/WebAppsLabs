@@ -1,8 +1,8 @@
 export default class Spy {
-   constructor(object, methodName) {
+   constructor(object, methodName, replyWith = null) {
       this.object = object;
       this.methodName = methodName;
-      this.oldMethod = object[methodName];
+      this.replyWith = replyWith || object[methodName];
       this.calls = [];
       this.setupSpy();
    }
@@ -10,7 +10,7 @@ export default class Spy {
       let spy = this;
       this.object[this.methodName] = function(...args) {
          spy.calls.push({ context: this, args: args });
-         spy.oldMethod.apply(this, args);
+         spy.replyWith.apply(this, args);
       }
    }
    numberOfCalls() {
