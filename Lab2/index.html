@@ -147,7 +147,7 @@
             adjust();
          } else {
             clearInterval(timer);
-            for (const i = 1; i < anArray.length; i += 1) {
+            for (let i = 1; i < anArray.length; i += 1) {
                if (anArray[i] < anArray[i - 1]) {
                   insertError("fix2 didn't work!", $("#ex2"));
                   return;
