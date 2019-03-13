@@ -10,6 +10,8 @@ export default class ScorecardUI extends Observable {
 
 	initialize(o) {
 		this.$el.html(template(o));
+		this.$el.find("#resetButton")
+			.on("click", () => this.trigger("resetRequested"));
 	}
 
 	update(field, newValue) {
