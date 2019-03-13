@@ -1,5 +1,10 @@
-export default class Score {
+// score.js
+
+import Observable from './observable.js';
+
+export default class Score extends Observable {
 	constructor() {
+		super();
 		this.reset();
 	}
 
