@@ -1,4 +1,5 @@
 import Score from '../js/score.js';
+import spy;
 
 let expect = chai.expect;
 
@@ -38,13 +39,10 @@ describe('Score instances', () => {
     	expect(score.stayLosses).to.equal(stayLosses);
 	}
 
-	it('trigger messages when values change (switchWins)', (done) => {
-		let h = (msg, value) => {
-	    	expect(msg).to.equal('switchWins');
-	    	expect(value).to.equal(2);
-	    	done();
-		};
-		score.on('change', h);
-		score.trigger('change', 'switchWins', 1);
+	
+	it('trigger messages when values change', () => {
+    	let spy = new Spy(score, "trigger");
+   		score.addResult(Score.ACTION_SWITCH, Score.RESULT_WIN);
+   		expect(spy.argumentsOfCall(0)).to.deep.equal(['change', 'switchWins', 1]);
 	});
 });
