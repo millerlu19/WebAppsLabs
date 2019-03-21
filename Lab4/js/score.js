@@ -11,33 +11,38 @@ export default class Score extends Observable {
 	addResult(action, result) {
 		if (action == Score.ACTION_SWITCH) {
 			if (result == Score.RESULT_WIN) {
-				this.set('switchWins', this.switchWins + 1);
+				this.incr('switchWins');
 			}
 			else {
-				this.switchLosses += 1;
+				this.incr('switchLosses');
 			}
 		}
 		else {
 			if (result == Score.RESULT_WIN) {
-				this.stayWins += 1;
+				this.incr('stayWins');
 			}
 			else {
-				this.stayLosses += 1;
+				this.incr('stayLosses');
 			}
 		}
 	}
 
 	reset() {
-		this.switchWins = 0;
-		this.switchLosses = 0;
-		this.stayWins = 0;
-		this.stayLosses = 0;
+		this.set('switchWins', 0);
+		this.set('switchLosses', 0);
+		this.set('stayWins', 0);
+		this.set('stayLosses', 0);
 	}
 
 	set(property, value) {
 		this[property] = value;
 		this.trigger('change', property, value);
 	}
+
+	incr(property) {
+   		this.set(property, this[property] + 1);
+	}
+
 }
 
 Score.ACTION_STAY = "stay";
