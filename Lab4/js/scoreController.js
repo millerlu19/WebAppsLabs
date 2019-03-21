@@ -8,5 +8,9 @@ export default class ScorecardController {
 		this.ui.initialize(score);
 		this.score.on('change', (property, value) => this.modelChanged(property, value));
 	}
+
+	modelChanged(property, value) {
+		this.ui.update(property, value);
+	}
 	
 }

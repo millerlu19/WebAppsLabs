@@ -3,14 +3,6 @@
 import Score from '../js/score.js';
 import ScoreController from '../js/scoreController.js';
 
-export default class ScorecardController {
-
-	constructor(score) {
-   		this.score = score;
-   		this.score.on('change', (property, value) => this.modelChanged(property, value));
-	}
-}
-
 class FakeScorecardUI {
    		initialize(o) {}
    		update(field, newValue) {}
@@ -39,6 +31,15 @@ describe('ScoreController instances', () => {
 			new ScoreController(score, ui);
 			expect(spy.numberOfCalls()).to.equal(1);
 			expect(spy.argumentsOfCall(0)).to.deep.equal([score]);
+		});
+
+		it('call the ui update when the model triggers a change', done => {
+    		let spy = new Spy(ui, 'update', (field, value) => {
+	        	expect(field).to.equal('switchWins');
+	        	expect(value).to.equal(score.switchWins);
+	        	done();
+    		});
+    		score.trigger('change', 'switchWins', score.switchWins);
 		});
 
 	});
