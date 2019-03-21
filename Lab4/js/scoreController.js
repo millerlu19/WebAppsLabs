@@ -2,8 +2,11 @@
 
 export default class ScorecardController {
 
-	constructor(score) {
-   		this.score = score;
-   		this.score.on('change', (property, value) => this.modelChanged(property, value));
+	constructor(score, ui) {
+		this.score = score;
+		this.ui = ui;
+		this.ui.initialize(score);
+		this.score.on('change', (property, value) => this.modelChanged(property, value));
 	}
+	
 }
