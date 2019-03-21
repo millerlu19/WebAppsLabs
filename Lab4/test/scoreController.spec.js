@@ -42,4 +42,20 @@ describe('ScoreController instances', () => {
     		score.trigger('change', 'switchWins', score.switchWins);
 		});
 
+		it('register to listen to ui resetRequested', () => {
+		   let spy = new Spy(score, 'on');
+		   new ScoreController(score);
+		   expect(spy.resetRequested()).to.equal(1);
+		   let [topic, handler] = spy.argumentsOfCall(0);
+		   expect(topic).to.equal('change');
+		});
+
+		it('call the model reset method when the ui triggers resetRequested', done => {
+    		let spy = new Spy(ui, 'update', (field, value) => {
+	        	ui.trigger('resetRequested')
+	        	done();
+    		});
+    		score.trigger('change', 'switchWins', score.switchWins);
+		});
+
 	});
